@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">RAKON</string>
+    <string name="logo_placeholder">[APP]</string>
+    <string name="title_activity_view_stories">ViewStories</string>
+    <string name="all_stories">All Stories</string>
+    <string name="your_stories">Your Stories</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="serious_label">SERIOUS</string>
+    <string name="place_holder_stamp">TheFiveHundred | 4.6.18</string>
+    <string name="stories_text">ALL STORIES</string>
+    <string name="ystories_text">YOUR STORIES</string>
+    <string name="title_activity_story_entries">StoryEntries</string>
+    <string name="add_entry_text">+ ADD ENTRY</string>
+    <string name="example_text">This is what I like to call "example text". This is just testing out how my text will appear on the screen.</string>
+    <string name="welcome_text">Welcome Back!</string>
+    <string name="view_stories_text">View Stories</string>
+</resources>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="20"
+    tools:context="com.coincalc.anduril.rakon.StoryEntries">
+
+    <TextView
+        android:id="@+id/story_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="505"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@color/mainColor"
+        android:background="#F5F5F5"
+        android:layout_weight="1"/>
+
+    <ListView
+        android:id="@+id/entry_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="17"
+        android:divider="@null"
+        android:dividerHeight="0dp"/>
+
+    <Button
+        android:id="@+id/addEntry"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:text="@string/add_entry_text"
+        android:textSize="18sp"
+        android:background="#F0F0F0"/>
+</LinearLayout>

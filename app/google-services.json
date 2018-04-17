@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "381908336238",
+    "firebase_url": "https://racon-da2ee.firebaseio.com",
+    "project_id": "racon-da2ee",
+    "storage_bucket": "racon-da2ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381908336238:android:0359238867781984",
+        "android_client_info": {
+          "package_name": "com.coincalc.anduril.rakon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381908336238-h656tjmufvsu0cluis4fkop23qqdid1u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.coincalc.anduril.rakon",
+            "certificate_hash": "29fa479a6bb0b0eeb777bf2651ae1ffb52148cc0"
+          }
+        },
+        {
+          "client_id": "381908336238-q0594g9o32qhf9pid9jgvbkcefj5n16s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBx-cKeJbLlHlh8WDK-X-792Dckys4H6-w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "381908336238-q0594g9o32qhf9pid9jgvbkcefj5n16s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
