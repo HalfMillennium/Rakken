@@ -17,5 +17,5 @@
     <string name="add_entry_text">+ ADD ENTRY</string>
     <string name="example_text">This is what I like to call "example text". This is just testing out how my text will appear on the screen.</string>
     <string name="welcome_text">Welcome Back!</string>
-    <string name="view_stories_text">View Stories</string>
+    <string name="view_stories_text">VIEW STORIES</string>
 </resources>

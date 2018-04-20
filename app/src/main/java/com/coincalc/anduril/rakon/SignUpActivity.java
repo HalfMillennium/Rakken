@@ -33,34 +33,37 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText emailAdd, user, pass;
     private String email, username, password;
     private String eNosp, uNosp, pNosp;
-    private String errSpec;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         mAuth = FirebaseAuth.getInstance();
-
-        emailAdd = (EditText) findViewById(R.id.emailAdd);
-            email = emailAdd.getText().toString();
-            eNosp = email.replace(" ", "");
-        user = (EditText) findViewById(R.id.user);
-            username = user.getText().toString();
-            uNosp = email.replace(" ", "");
-        pass = (EditText) findViewById(R.id.pass);
-            password = pass.getText().toString();
-            pNosp = email.replace(" ", "");
     }
 
     public void createNewUser(View view)
     {
+        emailAdd = findViewById(R.id.emailAdd);
+            email = emailAdd.getText().toString();
+            eNosp = email.replace(" ", "");
+        user = findViewById(R.id.user);
+            username = user.getText().toString();
+            uNosp = username.replace(" ", "");
+        pass = findViewById(R.id.pass);
+            password = pass.getText().toString();
+            pNosp = password.replace(" ", "");
+
         if(!(eNosp.equals("") || uNosp.equals("") || pNosp.equals(""))) {
+
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-            ref.child("users").orderByChild(username).addListenerForSingleValueEvent(new ValueEventListener() {
+            ref.child("users").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
+                    Log.d("username", username);
+                    //dataSnapshot.getValue(String.class);
                     if (!dataSnapshot.exists()) {
                         buildUser();
+                        finish();
                     } else {
                         Toast.makeText(SignUpActivity.this, "This username has already been taken.", Toast.LENGTH_SHORT).show();
                     }
@@ -74,8 +77,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 
-    public void buildUser()
-    {
+    public void buildUser() {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -86,29 +88,22 @@ public class SignUpActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             finish();
                         } else {
-                            try
-                            {
+                            try {
                                 throw task.getException();
                             }
                             // if user enters wrong email.
-                            catch (FirebaseAuthWeakPasswordException weakPassword)
-                            {
+                            catch (FirebaseAuthWeakPasswordException weakPassword) {
                                 Log.d(TAG, "onComplete: weak_password");
                                 Toast.makeText(SignUpActivity.this, "Password too weak!", Toast.LENGTH_SHORT).show();
                             }
                             // if user enters wrong password.
-                            catch (FirebaseAuthInvalidCredentialsException malformedEmail)
-                            {
+                            catch (FirebaseAuthInvalidCredentialsException malformedEmail) {
                                 Log.d(TAG, "onComplete: malformed_email");
                                 Toast.makeText(SignUpActivity.this, "Please enter a valid email address!", Toast.LENGTH_SHORT).show();
-                            }
-                            catch (FirebaseAuthUserCollisionException existEmail)
-                            {
+                            } catch (FirebaseAuthUserCollisionException existEmail) {
                                 Log.d(TAG, "onComplete: exist_email");
                                 Toast.makeText(SignUpActivity.this, "This email address already exists!", Toast.LENGTH_SHORT).show();
-                            }
-                            catch (Exception e)
-                            {
+                            } catch (Exception e) {
                                 Log.d(TAG, "onComplete: " + e.getMessage());
                                 Toast.makeText(SignUpActivity.this, "Sign up failed. Try again later.", Toast.LENGTH_SHORT).show();
                             }

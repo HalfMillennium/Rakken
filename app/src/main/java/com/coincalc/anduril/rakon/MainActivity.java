@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         if(FirebaseAuth.getInstance().getCurrentUser() == null)
             setContentView(R.layout.activity_main);
         else
-            setContentView(R.layout.);   // simple 'View Stories' button
+            setContentView(R.layout.activity_main_alt);   // simple 'View Stories' button
         }
 
     public void viewStories(View view)
@@ -28,10 +28,21 @@ public class MainActivity extends AppCompatActivity {
     public void signUp(View view)
     {
         Intent intent = SignUpActivity.makeIntent(MainActivity.this);
+        startActivity(intent);
     }
 
     public void signIn(View view)
     {
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if(FirebaseAuth.getInstance().getCurrentUser() != null)
+        {
+            setContentView(R.layout.activity_main_alt);
+        }
     }
 }
