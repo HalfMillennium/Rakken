@@ -23,23 +23,38 @@
 
     <TextView
         android:id="@+id/view_stories"
-        android:layout_width="152dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="244dp"
+        android:layout_width="159dp"
+        android:layout_height="46dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="80dp"
         android:background="@drawable/button_style_3"
-        android:fontFamily="sans-serif-black"
+        android:fontFamily="@font/zonapro_bold"
         android:gravity="center"
         android:onClick="viewStories"
         android:text="@string/view_stories_text"
         android:textColor="#f9f9f9"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/zonapro_bold"
+        android:onClick="signOut"
+        android:text="@string/sign_out"
+        android:textColor="@color/fullWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_stories"
+        app:layout_constraintVertical_bias="0.208" />
 
 </android.support.constraint.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.coincalc.anduril.rakon;
 
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -9,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
@@ -40,7 +42,6 @@ public class ViewStories extends AppCompatActivity {
 
     private TextView titleText;
     private ArrayList<String> titles, genres, dateUsers;
-    private ArrayList<String> y_titles, y_genres, y_dateUsers;
     private HashMap<String,String> item;
     private SimpleAdapter sa;
     private ArrayList<HashMap<String, String>> list = new ArrayList<>();
@@ -57,9 +58,11 @@ public class ViewStories extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment selectedFragment = null;
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     if(switchable) {
+                        selectedFragment = FragmentMainOne.newInstance();
                         buildList(null);
                         clearList();
                         titleText.setText(R.string.stories_text);
@@ -67,14 +70,25 @@ public class ViewStories extends AppCompatActivity {
                     return true;
                 case R.id.navigation_dashboard:
                     if(switchable) {
+                        selectedFragment = FragmentMainOne.newInstance();
                         //FirebaseAuth.getInstance().getCurrentUser().getDisplayName()
-                        buildList("TheFiveHundred");
+                        buildList(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
                         clearList();
                         titleText.setText(R.string.ystories_text);
                         return true;
                     }
+                case R.id.navigation_search:
+                    if(switchable) {
+                        selectedFragment = SearchFragment.newInstance();
+                        Intent intent = Search.makeIntent(ViewStories.this);
+                        startActivity(intent);
+                    }
+
             }
-            return false;
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.frame_layout, selectedFragment);
+            transaction.commit();
+            return true;
         }
     };
 
@@ -91,15 +105,16 @@ public class ViewStories extends AppCompatActivity {
         genres = new ArrayList<>();
         dateUsers = new ArrayList<>();
 
-        y_titles = new ArrayList<>();
-        y_genres = new ArrayList<>();
-        y_dateUsers = new ArrayList<>();
-
         userMark = new ArrayList<>();
 
         buildList(null);
 
         Log.d("contrib", "false");
+
+        //Manually displaying the first fragment - one time only
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_layout, FragmentMainOne.newInstance());
+        transaction.commit();
 
     }
 
@@ -108,6 +123,7 @@ public class ViewStories extends AppCompatActivity {
         return new Intent(context, ViewStories.class);
     }
 
+    // filter --> the username of the current user
     public void buildList(final String filter)
     {
         titles.clear();

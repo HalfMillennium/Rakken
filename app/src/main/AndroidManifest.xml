@@ -20,7 +20,10 @@
             android:name=".ViewStories"
             android:label="@string/title_activity_view_stories" />
         <activity android:name=".StoryEntries" />
-        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".NewEntry" />
+        <activity android:name=".SignInActivity" />
+        <activity android:name=".Search"></activity>
     </application>
 
 </manifest>

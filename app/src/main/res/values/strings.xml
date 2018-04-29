@@ -18,4 +18,19 @@
     <string name="example_text">This is what I like to call "example text". This is just testing out how my text will appear on the screen.</string>
     <string name="welcome_text">Welcome Back!</string>
     <string name="view_stories_text">VIEW STORIES</string>
+    <string name="content_label">CONTENT</string>
+    <string name="add_entry_label">ADD ENTRY</string>
+    <string name="max_700_chars">(up to 700 characters)</string>
+    <string name="or_sign_in"><u>or Sign In</u></string>
+    <string name="sign_out"><u>Sign Out</u></string>
+    <string name="email_add">Email Address</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Enter the name of a story</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

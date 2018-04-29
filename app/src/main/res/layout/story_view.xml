@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -12,7 +13,7 @@
         android:text="The Third Room"
         android:textColor="@color/mainDark"
         android:textSize="22sp"
-        android:fontFamily="sans-serif-black"/>
+        android:fontFamily="@font/zonapro_bold"/>
 
     <TextView
         android:id="@+id/genre"
@@ -28,6 +29,7 @@
         android:id="@+id/dateUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/zonapro_light"
         android:gravity="end"
         android:paddingRight="10dp"
         android:text="@string/place_holder_stamp"

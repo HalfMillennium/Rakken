@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="505"
+        android:fontFamily="@font/zonapro_bold"
         android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="@color/mainColor"
@@ -33,7 +34,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
+        android:background="@drawable/to_white_bg_select"
+        android:fontFamily="@font/zonapro_bold"
+        android:onClick="addStoryEntry"
         android:text="@string/add_entry_text"
-        android:textSize="18sp"
-        android:background="#F0F0F0"/>
+        android:textSize="18sp" />
 </LinearLayout>

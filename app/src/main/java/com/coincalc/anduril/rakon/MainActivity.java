@@ -3,12 +3,15 @@ package com.coincalc.anduril.rakon;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +36,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void signIn(View view)
     {
+        Intent intent = SignInActivity.makeIntent(MainActivity.this);
+        startActivity(intent);
+    }
 
+    public void signOut(View view)
+    {
+        FirebaseAuth.getInstance().signOut();
+        setContentView(R.layout.activity_main);
     }
 
     @Override
