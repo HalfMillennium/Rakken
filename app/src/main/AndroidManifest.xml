@@ -23,7 +23,6 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".NewEntry" />
         <activity android:name=".SignInActivity" />
-        <activity android:name=".Search"></activity>
     </application>
 
 </manifest>

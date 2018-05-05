@@ -22,7 +22,7 @@
     <string name="add_entry_label">ADD ENTRY</string>
     <string name="max_700_chars">(up to 700 characters)</string>
     <string name="or_sign_in"><u>or Sign In</u></string>
-    <string name="sign_out"><u>Sign Out</u></string>
+    <string name="sign_out">Sign Out</string>
     <string name="email_add">Email Address</string>
     <string name="username">Username</string>
     <string name="password">Password</string>

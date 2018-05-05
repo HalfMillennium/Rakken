@@ -10,4 +10,5 @@
     <color name="whiteGray">#f9f9f9</color>
     <color name="fullWhite">#F0F0F0</color>
     <color name="lightGray">#DCDCDC</color>
+    <color name="midGray">#696969</color>
 </resources>

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/purple_bg_app"
+    android:fitsSystemWindows="true"
     tools:context="com.coincalc.anduril.rakon.MainActivity">
 
     <ImageView
@@ -40,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/signOutText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -51,6 +52,7 @@
         android:onClick="signOut"
         android:text="@string/sign_out"
         android:textColor="@color/fullWhite"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

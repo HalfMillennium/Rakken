@@ -1,10 +1,13 @@
 package com.coincalc.anduril.rakon;
 
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -16,11 +19,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(FirebaseAuth.getInstance().getCurrentUser() == null)
+        if (FirebaseAuth.getInstance().getCurrentUser() == null)
             setContentView(R.layout.activity_main);
         else
             setContentView(R.layout.activity_main_alt);   // simple 'View Stories' button
-        }
+    }
 
     public void viewStories(View view)
     {

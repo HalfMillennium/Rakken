@@ -1,57 +1,63 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.coincalc.anduril.rakon.SearchFragment">
+    android:orientation="vertical"
+    android:weightSum="10"
+    android:windowSoftInputMode="adjustResize"
+    tools:context="com.coincalc.anduril.rakon.SearchFrag">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="10"
-        tools:context="com.coincalc.anduril.rakon.Search">
+        android:layout_height="0dp"
+        android:layout_margin="15dp"
+        android:layout_weight="1"
+        android:background="@drawable/search_text"
+        android:orientation="horizontal"
+        android:weightSum="3">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+        <EditText
+            android:id="@+id/search_bar1"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:background="@null"
+            android:ems="10"
+            android:hint="@string/search_hint"
+            android:inputType="textPersonName"
+            android:paddingLeft="30dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/darkGray"
+            android:textColorHint="@color/darkGray"
+            android:textCursorDrawable="@null"
+            android:textSize="14sp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="36dp" />
+
+        <ImageView
+            android:id="@+id/search_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="horizontal"
-            android:background="#f1f1f1"
-            android:weightSum="3">
+            android:padding="12dp"
+            android:paddingRight="0dp"
+            android:onClick="search"
+            app:srcCompat="@drawable/search_selector" />
 
-            <EditText
-                android:id="@+id/search_bar1"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="2"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:hint="@string/search_hint"
-                android:textColor="@color/darkGray"
-                android:textColorHint="@color/darkGray"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="36dp" />
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/lightGray"
-                android:padding="5dp"
-                app:srcCompat="@drawable/search_glass" />
-
-        </LinearLayout>
-
-        <ListView
-            android:id="@+id/results"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="8"/>
     </LinearLayout>
 
+    </ScrollView>
 
-</FrameLayout>
+    <ListView
+        android:id="@+id/results"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"/>
+</LinearLayout>
