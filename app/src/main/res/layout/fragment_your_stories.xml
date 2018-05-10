@@ -6,6 +6,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:weightSum="10"
     android:orientation="vertical"
     tools:context="com.coincalc.anduril.rakon.ViewStories">
@@ -17,7 +18,7 @@
         android:id="@+id/titleText"
         android:textColor="@color/mainColor"
         android:textSize="25sp"
-        android:fontFamily="sans-serif-thin"
+        android:fontFamily="@font/zonapro_light"
         android:gravity="center"
         android:text="@string/your_stories"/>
 
@@ -33,5 +34,16 @@
         android:layout_weight="8"
         android:divider="@color/mainColor"
         android:dividerHeight="1dip"/>
+
+    <Button
+        android:id="@+id/start_new"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/create_new"
+        android:textColor="@color/fullWhite"
+        android:background="@color/mainDark"
+        android:textSize="20sp"
+        android:fontFamily="@font/zonapro_bold"/>
 
 </LinearLayout>

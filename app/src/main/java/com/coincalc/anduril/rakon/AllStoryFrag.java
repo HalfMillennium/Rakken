@@ -76,6 +76,9 @@ public class AllStoryFrag extends Fragment {
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
+        /*** temporary disable and reenable back button **/
+        MainActivity.backable_b = false;
+
         ref.child("stories").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -132,6 +135,9 @@ public class AllStoryFrag extends Fragment {
                         startActivity(intent);
                     }
                 });
+
+                MainActivity.backable_b = true;
+                /*** temporary disable and reenable back button **/
             }
 
             @Override

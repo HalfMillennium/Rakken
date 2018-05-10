@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    public static boolean backable_a = true, backable_b = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,14 @@ public class MainActivity extends AppCompatActivity {
         if(FirebaseAuth.getInstance().getCurrentUser() != null)
         {
             setContentView(R.layout.activity_main_alt);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(backable_a && backable_b)
+        {
+            super.onBackPressed();
         }
     }
 }

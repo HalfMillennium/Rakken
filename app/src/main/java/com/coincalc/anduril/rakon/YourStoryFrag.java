@@ -45,9 +45,11 @@ public class YourStoryFrag extends Fragment {
     private boolean switchable = false;
     public View row;
     private DataSnapshot retSnap;
+    private Button startNew;
 
     private View primView;
     private String username;
+    private DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
     @Nullable
     @Override
@@ -59,12 +61,21 @@ public class YourStoryFrag extends Fragment {
         genres = new ArrayList<>();
         dateUsers = new ArrayList<>();
 
+        startNew = (Button) view.findViewById(R.id.start_new);
+        startNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createNewStory(view);
+            }
+        });
+
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
         ref.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getEmail().replace(".", ""))
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         username = dataSnapshot.getValue(String.class);
+                        buildList(username);
                     }
 
                     @Override
@@ -72,8 +83,6 @@ public class YourStoryFrag extends Fragment {
 
                     }
                 });
-
-        buildList("TheFiveHundred");
 
         primView = view;
 
@@ -128,13 +137,14 @@ public class YourStoryFrag extends Fragment {
                     list.add(item);
                 }
 
-                //Use an Adapter to link data to Views
+                /*** temporary disable and reenable back button **/
+                MainActivity.backable_a = false;
+
                 sa = new SimpleAdapter(getActivity(), list,
                         R.layout.story_view,
                         new String[] { "line1","line2", "line3"},
                         new int[] {R.id.title, R.id.genre, R.id.dateUser});
 
-                //Link the Adapter to the list
                 storyList = (ListView)primView.findViewById(R.id.your_stories);
 
                 storyList.setAdapter(sa);
@@ -148,6 +158,10 @@ public class YourStoryFrag extends Fragment {
                         startActivity(intent);
                     }
                 });
+
+                MainActivity.backable_a = true;
+                /*** temporary disable and reenable back button **/
+
             }
 
             @Override
@@ -162,6 +176,11 @@ public class YourStoryFrag extends Fragment {
         list.clear();
         sa.notifyDataSetChanged();
         storyList.setAdapter(sa);
+    }
+
+    public static void rebuildList()
+    {
+        //getFragmentMan
     }
 
     public boolean getContribs(final String user, final DataSnapshot snap)
@@ -185,5 +204,11 @@ public class YourStoryFrag extends Fragment {
             return false;
         }
 
+    }
+
+    public void createNewStory(View view)
+    {
+        Intent intent = CreateNew.makeIntent(getActivity());
+        startActivity(intent);
     }
 }

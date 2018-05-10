@@ -34,6 +34,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText emailAdd, user, pass;
     private String email, username, password;
     private String eNosp, uNosp, pNosp;
+    private DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +93,8 @@ public class SignUpActivity extends AppCompatActivity {
                                     .setDisplayName(username).build();
                             Log.d("user", username);
                             user.updateProfile(profileUpdates);
+
+                            ref.child("users").child(user.getEmail()).setValue(user.getDisplayName());
 
                             finish();
                         } else {

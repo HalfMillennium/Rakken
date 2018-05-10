@@ -17,7 +17,7 @@
         android:id="@+id/titleText"
         android:textColor="@color/mainColor"
         android:textSize="25sp"
-        android:fontFamily="sans-serif-thin"
+        android:fontFamily="@font/zonapro_light"
         android:gravity="center"
         android:text="@string/all_stories"/>
 
@@ -30,7 +30,7 @@
         android:id="@+id/all_stories"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="8"
+        android:layout_weight="9"
         android:divider="@color/mainColor"
         android:dividerHeight="1dip"/>
 

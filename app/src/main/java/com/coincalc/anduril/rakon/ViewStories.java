@@ -26,11 +26,13 @@ public class ViewStories extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    setViewPager(0);
+                    if(MainActivity.backable_b)
+                        setViewPager(0);
                     //AllStoryFrag.clearList();
                     return true;
                 case R.id.navigation_dashboard:
-                    setViewPager(1);
+                    if(MainActivity.backable_a)
+                        setViewPager(1);
                     //YourStoryFrag.clearList();
                     return true;
                 case R.id.navigation_search:
@@ -74,5 +76,13 @@ public class ViewStories extends AppCompatActivity {
     public static Intent makeIntent(Context context)
     {
         return new Intent(context, ViewStories.class);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(MainActivity.backable_a && MainActivity.backable_b)
+        {
+            super.onBackPressed();
+        }
     }
 }

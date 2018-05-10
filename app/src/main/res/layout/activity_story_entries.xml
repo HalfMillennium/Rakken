@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="20"
+    android:fitsSystemWindows="true"
     tools:context="com.coincalc.anduril.rakon.StoryEntries">
 
     <TextView
