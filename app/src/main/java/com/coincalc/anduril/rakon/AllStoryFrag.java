@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.coincalc.anduril.rakon.R;
 import com.coincalc.anduril.rakon.StoryEntries;
 import com.coincalc.anduril.rakon.ViewStories;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,6 +46,9 @@ public class AllStoryFrag extends Fragment {
     public View row;
     private DataSnapshot retSnap;
 
+    private Intent intent;
+    private String username;
+
     private View primView;
 
     @Nullable
@@ -56,6 +60,22 @@ public class AllStoryFrag extends Fragment {
         titles = new ArrayList<>();
         genres = new ArrayList<>();
         dateUsers = new ArrayList<>();
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        ref.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getEmail().replace(".", ""))
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        username = dataSnapshot.getValue(String.class);
+                        intent = StoryEntries.makeIntent(getContext());
+                        intent.putExtra("username", username);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
         buildList(null);
 
@@ -130,7 +150,6 @@ public class AllStoryFrag extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         Log.d("here","here");
-                        Intent intent = StoryEntries.makeIntent(getContext());
                         intent.putExtra("storyName", titles.get(i));
                         startActivity(intent);
                     }

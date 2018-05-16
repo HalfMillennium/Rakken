@@ -1,5 +1,6 @@
 package com.coincalc.anduril.rakon;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.ContactsContract;
@@ -40,7 +41,10 @@ public class StoryEntries extends AppCompatActivity {
     private ListView contentList;
     private TextView titleText;
     private String storyName;
+    private final int fromStoryEntry = 1;
+    private boolean clrForEntry = true;
     private int i = 0;
+    private int q = 0;
 
 
     @Override
@@ -127,35 +131,55 @@ public class StoryEntries extends AppCompatActivity {
     }
 
     public void addStoryEntry(View view) {
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
         final Intent intent = NewEntry.makeIntent(StoryEntries.this);
         intent.putExtra("storyName", storyName);
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("stories");
 
         final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         final Date date = new Date();
+        Log.d("storyName", storyName);
+        final String username = getIntent().getExtras().get("username").toString();
 
-        ref.child("stories").child(storyName).child("content").addListenerForSingleValueEvent(new ValueEventListener() {
+        ref.child(storyName).child("content").child(dateFormat.format(date)).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot shot : dataSnapshot.getChildren()) {
-                    if (shot.child(dateFormat.format(date)).exists())
-                        for (DataSnapshot entries : shot.child(dateFormat.format(date)).getChildren()) {
-                            if (entries.getKey().contains(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()))
-                                Toast.makeText(StoryEntries.this, "You can't post more than once a day! Come back later.", Toast.LENGTH_SHORT).show();
-                            else {
-                                startActivity(intent);
-                                break;
-                            }
+                if(dataSnapshot.exists())
+                {
+                    for(DataSnapshot snaps : dataSnapshot.getChildren())
+                    {
+                        Log.d("snapsKey", snaps.getKey());
+                        if(snaps.getKey().contains(username) && clrForEntry)
+                        {
+                            Toast.makeText(StoryEntries.this, "You can't post more than once a day! Come back later.", Toast.LENGTH_SHORT).show();
+                            clrForEntry = false;
                         }
-                    else {
-                        startActivity(intent);
-                        break;
+
+                        if((q == dataSnapshot.getChildrenCount() - 1) && clrForEntry)
+                        {
+                            startActivityForResult(intent, fromStoryEntry);
+                        }
+
+                        q++;
                     }
+                } else {
+                    //Log.d("wow", "dey he go");
+                    startActivityForResult(intent, fromStoryEntry);
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {}
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == fromStoryEntry) {
+            Log.d("resultCode:" + resultCode, "" + Activity.RESULT_OK);
+            if(resultCode == Activity.RESULT_OK){
+                finish();
+                startActivity(getIntent());
+            }
+        }
     }
 }

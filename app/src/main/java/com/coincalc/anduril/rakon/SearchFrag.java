@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,6 +44,9 @@ public class SearchFrag extends Fragment {
     private ImageView send;
     private int i = 0;
 
+    private String username;
+    private Intent intent;
+
     private View primView;
 
     @Nullable
@@ -52,22 +56,24 @@ public class SearchFrag extends Fragment {
         Log.d(TAG, "onCreateView: started.");
 
         primView = view;
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        ref.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getEmail().replace(".", ""))
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        username = dataSnapshot.getValue(String.class);
+                        intent = StoryEntries.makeIntent(getContext());
+                        intent.putExtra("username", username);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
         send = (ImageView) view.findViewById(R.id.search_button);
-        /*
-        send.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    send.setImageDrawable(getResources().getDrawable(R.drawable.send_white));
-                    search(view);
-                    Log.d("change", "white");
-                } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    send.setImageDrawable(getResources().getDrawable(R.drawable.send));
-                    Log.d("return", "normal");
-                }
-                return true;
-            }
-        });*/
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,7 +137,6 @@ public class SearchFrag extends Fragment {
                     resultsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                            Intent intent = StoryEntries.makeIntent(getContext());
                             intent.putExtra("storyName", titles.get(i));
                             startActivity(intent);
                         }

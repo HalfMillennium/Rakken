@@ -1,6 +1,8 @@
 package com.coincalc.anduril.rakon;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,14 +18,24 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     public static boolean backable_a = true, backable_b = true;
+    ConstraintLayout layout;
+    AnimationDrawable animationDrawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (FirebaseAuth.getInstance().getCurrentUser() == null)
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             setContentView(R.layout.activity_main);
-        else
+            layout = (ConstraintLayout) findViewById(R.id.layout);
+        } else {
             setContentView(R.layout.activity_main_alt);   // simple 'View Stories' button
+            layout = (ConstraintLayout) findViewById(R.id.layout_alt);
+        }
+
+        animationDrawable = (AnimationDrawable) layout.getBackground();
+        animationDrawable.setEnterFadeDuration(2000);
+        animationDrawable.setExitFadeDuration(4000);
+        animationDrawable.start();
     }
 
     public void viewStories(View view)

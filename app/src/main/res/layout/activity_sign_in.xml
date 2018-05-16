@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/purple_bg_app"
+    android:background="@drawable/bg_anim"
+    android:id="@+id/layout_signIn"
     tools:context="com.coincalc.anduril.rakon.SignUpActivity">
 
     <LinearLayout

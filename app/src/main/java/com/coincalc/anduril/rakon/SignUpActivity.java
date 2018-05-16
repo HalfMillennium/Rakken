@@ -94,8 +94,8 @@ public class SignUpActivity extends AppCompatActivity {
                             Log.d("user", username);
                             user.updateProfile(profileUpdates);
 
-                            ref.child("users").child(user.getEmail()).setValue(user.getDisplayName());
-
+                            ref.child("users").child(user.getEmail().replace(".", "")).setValue(user.getDisplayName());
+                            ref.push();
                             finish();
                         } else {
                             try {

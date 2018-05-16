@@ -1,5 +1,6 @@
 package com.coincalc.anduril.rakon;
 
+import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -17,7 +19,7 @@ public class ViewStories extends AppCompatActivity {
     private static final String TAG = "ViewStories";
 
     private SectionsStatePagerAdapter mSectionsStatePagerAdapter;
-    private ViewPager mViewPager;
+    public ViewPager mViewPager = null;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -84,5 +86,14 @@ public class ViewStories extends AppCompatActivity {
         {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void onResume()
+    {
+        mSectionsStatePagerAdapter.notifyDataSetChanged();
+        setupViewPager(mViewPager);
+        setViewPager(0);
+        super.onResume();
     }
 }

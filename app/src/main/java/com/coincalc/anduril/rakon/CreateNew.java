@@ -1,9 +1,13 @@
 package com.coincalc.anduril.rakon;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -67,7 +71,6 @@ public class CreateNew extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         String username = dataSnapshot.getValue(String.class);
-                        // dont forget ref.push()
                         DatabaseReference mRef = ref.child("stories").child(title);
                         mRef.child("contribs").setValue(username);
                         mRef.child("user").setValue(username);
@@ -83,8 +86,20 @@ public class CreateNew extends AppCompatActivity {
                                 .child(username + "," + timeFormat.format(date))
                                 .setValue(content);
 
+                        Log.d("username", username);
+
                         mRef.push();
 
+                        //Fragment frg = null;
+                        //frg = getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + ViewStories.mViewPager.getCurrentItem());
+                        //final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                        //ft.detach(frg);
+                        //ft.attach(frg);
+                        //ft.commit();
+
+                        Intent returnIntent = new Intent();
+                        returnIntent.putExtra("retCode", 1);
+                        setResult(Activity.RESULT_OK);
                         finish();
                     }
 

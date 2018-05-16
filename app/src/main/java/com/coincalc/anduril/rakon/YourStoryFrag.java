@@ -47,6 +47,8 @@ public class YourStoryFrag extends Fragment {
     private DataSnapshot retSnap;
     private Button startNew;
 
+    Intent intent;
+
     private View primView;
     private String username;
     private DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
@@ -75,7 +77,10 @@ public class YourStoryFrag extends Fragment {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         username = dataSnapshot.getValue(String.class);
+                        intent = StoryEntries.makeIntent(getContext());
+                        intent.putExtra("username", username);
                         buildList(username);
+                        //Toast.makeText(getActivity(), username, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -153,7 +158,6 @@ public class YourStoryFrag extends Fragment {
                 storyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        Intent intent = StoryEntries.makeIntent(getContext());
                         intent.putExtra("storyName", titles.get(i));
                         startActivity(intent);
                     }
@@ -176,11 +180,6 @@ public class YourStoryFrag extends Fragment {
         list.clear();
         sa.notifyDataSetChanged();
         storyList.setAdapter(sa);
-    }
-
-    public static void rebuildList()
-    {
-        //getFragmentMan
     }
 
     public boolean getContribs(final String user, final DataSnapshot snap)

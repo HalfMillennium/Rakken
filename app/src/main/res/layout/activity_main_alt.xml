@@ -4,38 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/purple_bg_app"
+    android:background="@drawable/bg_anim"
     android:fitsSystemWindows="true"
+    android:id="@+id/layout_alt"
     tools:context="com.coincalc.anduril.rakon.MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="297dp"
         android:layout_height="91dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="176dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.634"
         app:srcCompat="@drawable/rakken_logo" />
 
     <TextView
         android:id="@+id/view_stories"
-        android:layout_width="159dp"
-        android:layout_height="46dp"
+        android:layout_width="197dp"
+        android:layout_height="59dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="80dp"
-        android:background="@drawable/button_style_3"
+        android:background="@drawable/button_style_3_selector"
         android:fontFamily="@font/zonapro_bold"
         android:gravity="center"
         android:onClick="viewStories"
         android:text="@string/view_stories_text"
         android:textColor="#f9f9f9"
-        android:textSize="20sp"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -52,11 +51,12 @@
         android:onClick="signOut"
         android:text="@string/sign_out"
         android:textColor="@color/fullWhite"
-        android:textSize="18sp"
+        android:textSize="23sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_stories"
-        app:layout_constraintVertical_bias="0.208" />
+        app:layout_constraintVertical_bias="0.052" />
 
 </android.support.constraint.ConstraintLayout>
