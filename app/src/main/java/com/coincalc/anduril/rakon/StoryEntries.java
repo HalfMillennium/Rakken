@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -45,6 +47,7 @@ public class StoryEntries extends AppCompatActivity {
     private boolean clrForEntry = true;
     private int i = 0;
     private int q = 0;
+    private int userIndex = 0;
 
 
     @Override
@@ -79,6 +82,7 @@ public class StoryEntries extends AppCompatActivity {
                         for(DataSnapshot shot : snap.getChildren()) {
                             snapList.add(snap);
                             content.add(shot.getValue(String.class));
+                            userIndex++;
                             Log.d("uh...", "hello?");
 
                             item = new HashMap<String,String>();
@@ -92,12 +96,20 @@ public class StoryEntries extends AppCompatActivity {
                     //Use an Adapter to link data to Views
                     sa = new SimpleAdapter(StoryEntries.this, list,
                             R.layout.entry_view_layout,
-                            new String[] { "line1"},
+                            new String[] {"line1"},
                             new int[] {R.id.content});
 
                     //Link the Adapter to the list
                     contentList = (ListView)findViewById(R.id.entry_list);
                     contentList.setAdapter(sa);
+
+                    contentList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                        @Override
+                        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            return false;
+                        }
+                    });
                 }
             }
 
@@ -162,7 +174,6 @@ public class StoryEntries extends AppCompatActivity {
                         q++;
                     }
                 } else {
-                    //Log.d("wow", "dey he go");
                     startActivityForResult(intent, fromStoryEntry);
                 }
             }
@@ -181,5 +192,10 @@ public class StoryEntries extends AppCompatActivity {
                 startActivity(getIntent());
             }
         }
+    }
+
+    public void throwPopUp()
+    {
+
     }
 }
