@@ -35,6 +35,7 @@ public class SignUpActivity extends AppCompatActivity {
     private String email, username, password;
     private String eNosp, uNosp, pNosp;
     private DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+    private boolean authSuccess = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,22 +82,12 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void buildUser() {
         mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success");
-
-                            FirebaseUser user = mAuth.getCurrentUser();
-
-                            Log.d("WHAT", username);
-
-                            ref.child("users").child(user.getEmail().replace(".", "")).setValue(username);
-                            ref.push();
-
-                            Toast.makeText(SignUpActivity.this, "Welcome, " + username + "!", Toast.LENGTH_SHORT).show();
-                        } else {
+                        if(!task.isSuccessful())
+                        {
+                            authSuccess = false;
                             Log.d("not", "success");
                             try {
                                 throw task.getException();
@@ -117,12 +108,22 @@ public class SignUpActivity extends AppCompatActivity {
                                 Log.d(TAG, "onComplete: " + e.getMessage());
                                 Toast.makeText(SignUpActivity.this, "Sign up failed. Try again later.", Toast.LENGTH_SHORT).show();
                             }
-
                         }
-
-                        // ...
                     }
                 });
+
+        if(authSuccess) {
+            // Sign in success, update UI with the signed-in user's information
+            Log.d(TAG, "createUserWithEmail:success");
+
+            Log.d("WHAT", username);
+
+            ref.child("users").child(email.replace(".", "")).setValue(username);
+            ref.push();
+
+            Toast.makeText(SignUpActivity.this, "Welcome, " + username + "!", Toast.LENGTH_SHORT).show();
+            authSuccess = false;
+        }
     }
 
     public static Intent makeIntent(Context context)

@@ -90,65 +90,64 @@ public class SearchFrag extends Fragment {
         dateUsers = new ArrayList<>();
 
         searchBar = (EditText) primView.findViewById(R.id.search_bar1);
-        query = searchBar.getText().toString();
+        if(!searchBar.getText().toString().replaceAll(" ", "").equals("")) {
+            query = searchBar.getText().toString();
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        ref.child("stories").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists())
-                {
-                    for(DataSnapshot shot : dataSnapshot.getChildren())
-                    {
-                        Log.d("titles?", shot.getKey());
-                        if(shot.getKey().replaceAll(" ", "").contains(query.replaceAll(" ", "")))
-                        {
-                            i++;
-                            titles.add(shot.getKey());
-                            genres.add(shot.child("genre").getValue(String.class));
-                            dateUsers.add(shot.child("user").getValue(String.class) + " | " + shot.child("created").getValue(String.class));
-                            Log.d("i", "" + i);
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+            ref.child("stories").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        for (DataSnapshot shot : dataSnapshot.getChildren()) {
+                            Log.d("titles?", shot.getKey());
+                            if (shot.getKey().replaceAll(" ", "").contains(query.replaceAll(" ", ""))) {
+                                i++;
+                                titles.add(shot.getKey());
+                                genres.add(shot.child("genre").getValue(String.class));
+                                dateUsers.add(shot.child("user").getValue(String.class) + " | " + shot.child("created").getValue(String.class));
+                                Log.d("i", "" + i);
+                            }
                         }
-                    }
 
-                    if(list.size() != 0)
-                        clearList();
+                        if (list.size() != 0)
+                            clearList();
 
-                    //Load the data
-                    for(int l = 0; l < i; l++){
-                        item = new HashMap<String,String>();
-                        item.put("line1", titles.get(l));
-                        item.put("line2", genres.get(l).toUpperCase());
-                        item.put("line3", dateUsers.get(l));
-                        list.add(item);
-                    }
-
-                    i = 0;
-
-                    //Use an Adapter to link data to Views
-                    sa = new SimpleAdapter(getActivity(), list,
-                            R.layout.results_view,
-                            new String[] { "line1","line2", "line3"},
-                            new int[] {R.id.title, R.id.genre, R.id.dateUser});
-
-                    resultsView = (ListView) primView.findViewById(R.id.results);
-                    resultsView.setAdapter(sa);
-
-                    resultsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                            intent.putExtra("storyName", titles.get(i));
-                            startActivity(intent);
+                        //Load the data
+                        for (int l = 0; l < i; l++) {
+                            item = new HashMap<String, String>();
+                            item.put("line1", titles.get(l));
+                            item.put("line2", genres.get(l).toUpperCase());
+                            item.put("line3", dateUsers.get(l));
+                            list.add(item);
                         }
-                    });
+
+                        i = 0;
+
+                        //Use an Adapter to link data to Views
+                        sa = new SimpleAdapter(getActivity(), list,
+                                R.layout.results_view,
+                                new String[]{"line1", "line2", "line3"},
+                                new int[]{R.id.title, R.id.genre, R.id.dateUser});
+
+                        resultsView = (ListView) primView.findViewById(R.id.results);
+                        resultsView.setAdapter(sa);
+
+                        resultsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                intent.putExtra("storyName", titles.get(i));
+                                startActivity(intent);
+                            }
+                        });
+                    }
                 }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
+                }
+            });
+        }
     }
 
     public void clearList()

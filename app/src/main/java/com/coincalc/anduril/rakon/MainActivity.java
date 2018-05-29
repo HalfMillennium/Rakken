@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     {
         FirebaseAuth.getInstance().signOut();
         setContentView(R.layout.activity_main);
+        Toast.makeText(this, "You've been signed out!", Toast.LENGTH_SHORT).show();
     }
 
     @Override

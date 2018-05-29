@@ -184,13 +184,23 @@ public class YourStoryFrag extends Fragment {
 
     public boolean getContribs(final String user, final DataSnapshot snap)
     {
+        boolean noContribs = false;
 
-        String[] contr = snap.child("contribs").getValue(String.class).split(",");
-        Log.d("check", contr[0]);
-        for (int i = 0; i < contr.length; i++) {
-            if (user.equals(contr[i])) {
-                contrib = true;
-                Log.d("contrib", "true");
+        String[] contr = null;
+
+        try {
+            contr = snap.child("contribs").getValue(String.class).split(",");
+        } catch (NullPointerException e) {
+            noContribs = true;
+        }
+
+        if(!noContribs) {
+            Log.d("check", contr[0]);
+            for (int i = 0; i < contr.length; i++) {
+                if (user.equals(contr[i])) {
+                    contrib = true;
+                    Log.d("contrib", "true");
+                }
             }
         }
 
