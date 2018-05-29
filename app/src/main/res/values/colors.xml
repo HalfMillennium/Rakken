@@ -12,4 +12,5 @@
     <color name="lightGray">#DCDCDC</color>
     <color name="midGray">#696969</color>
     <color name="lightPurple">#7647a2</color>
+    <color name="transparent">#07000000</color>
 </resources>

@@ -112,7 +112,7 @@ public class YourStoryFrag extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren())
                 {
-                    if(!(filter == null))
+                    if(filter != null)
                     {
                         //(snapshot.child("user").getValue(String.class).equals(filter))
                         if(getContribs(filter, snapshot)) {

@@ -23,7 +23,10 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".NewEntry" />
         <activity android:name=".SignInActivity" />
-        <activity android:name=".CreateNew"></activity>
+        <activity android:name=".CreateNew" />
+        <activity android:name=".DetailsPopup"
+            android:theme="@style/AppTheme.CustomPopup">
+        </activity>
     </application>
 
 </manifest>

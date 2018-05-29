@@ -90,13 +90,6 @@ public class CreateNew extends AppCompatActivity {
 
                         mRef.push();
 
-                        //Fragment frg = null;
-                        //frg = getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + ViewStories.mViewPager.getCurrentItem());
-                        //final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                        //ft.detach(frg);
-                        //ft.attach(frg);
-                        //ft.commit();
-
                         Intent returnIntent = new Intent();
                         returnIntent.putExtra("retCode", 1);
                         setResult(Activity.RESULT_OK);

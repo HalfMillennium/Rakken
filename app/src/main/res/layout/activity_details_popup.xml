@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGray"
+    tools:context="com.coincalc.anduril.rakon.DetailsPopup">
+
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/stamp"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/zonapro_bold"
+            android:text="TheFiveHundred"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/stamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/zonapro_light"
+            android:text="12:34:22 · 05/26/2018"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

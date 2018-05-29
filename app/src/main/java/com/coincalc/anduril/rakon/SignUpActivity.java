@@ -89,24 +89,24 @@ public class SignUpActivity extends AppCompatActivity {
                             Log.d(TAG, "createUserWithEmail:success");
 
                             FirebaseUser user = mAuth.getCurrentUser();
-                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                    .setDisplayName(username).build();
-                            Log.d("user", username);
-                            user.updateProfile(profileUpdates);
 
-                            ref.child("users").child(user.getEmail().replace(".", "")).setValue(user.getDisplayName());
+                            Log.d("WHAT", username);
+
+                            ref.child("users").child(user.getEmail().replace(".", "")).setValue(username);
                             ref.push();
-                            finish();
+
+                            Toast.makeText(SignUpActivity.this, "Welcome, " + username + "!", Toast.LENGTH_SHORT).show();
                         } else {
+                            Log.d("not", "success");
                             try {
                                 throw task.getException();
                             }
-                            // if user enters wrong email.
+
                             catch (FirebaseAuthWeakPasswordException weakPassword) {
                                 Log.d(TAG, "onComplete: weak_password");
                                 Toast.makeText(SignUpActivity.this, "Password too weak!", Toast.LENGTH_SHORT).show();
                             }
-                            // if user enters wrong password.
+
                             catch (FirebaseAuthInvalidCredentialsException malformedEmail) {
                                 Log.d(TAG, "onComplete: malformed_email");
                                 Toast.makeText(SignUpActivity.this, "Please enter a valid email address!", Toast.LENGTH_SHORT).show();

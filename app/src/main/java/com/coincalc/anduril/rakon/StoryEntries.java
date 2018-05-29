@@ -3,19 +3,16 @@ package com.coincalc.anduril.rakon;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,11 +21,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -37,7 +31,7 @@ public class StoryEntries extends AppCompatActivity {
     private DataSnapshot retSnap;
     private HashMap<String, String> item;
     private ArrayList<HashMap<String, String>> list = new ArrayList<>();
-    private ArrayList<DataSnapshot> snapList = new ArrayList<>();
+    private ArrayList<String> infoList = new ArrayList<>();
     private ArrayList<String> content;
     private SimpleAdapter sa;
     private ListView contentList;
@@ -48,7 +42,7 @@ public class StoryEntries extends AppCompatActivity {
     private int i = 0;
     private int q = 0;
     private int userIndex = 0;
-
+    private String info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,15 +74,14 @@ public class StoryEntries extends AppCompatActivity {
                     for(DataSnapshot snap : dataSnapshot.getChildren())
                     {
                         for(DataSnapshot shot : snap.getChildren()) {
-                            snapList.add(snap);
+                            infoList.add(snap.getKey() + "%" + shot.getKey());
+                            //yyyy-mm-dd%username,hh:mm:ss
                             content.add(shot.getValue(String.class));
                             userIndex++;
-                            Log.d("uh...", "hello?");
 
                             item = new HashMap<String,String>();
                             item.put("line1", content.get(i));
                             list.add(item);
-                            //Collections.reverse(list);
                             i++;
                         }
                     }
@@ -103,10 +96,13 @@ public class StoryEntries extends AppCompatActivity {
                     contentList = (ListView)findViewById(R.id.entry_list);
                     contentList.setAdapter(sa);
 
+                    info = infoList.get(userIndex - 1);
+
                     contentList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                         @Override
                         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
+                            throwPopUp(infoList.get(position));
                             return false;
                         }
                     });
@@ -194,8 +190,22 @@ public class StoryEntries extends AppCompatActivity {
         }
     }
 
-    public void throwPopUp()
+    public void throwPopUp(String stamp)
     {
+        //yyyy-mm-dd%username,hh:mm:ss
 
+        int i = stamp.indexOf("%");
+        int q = stamp.indexOf(",");
+        Log.d("vals", "" + i + " " + q);
+        String username = stamp.substring(i+1, q);
+        String time = stamp.substring(q+1, stamp.length());
+        String date = stamp.substring(0, i);
+
+        Intent intent = DetailsPopup.makeIntent(StoryEntries.this);
+        intent.putExtra("username", username);
+        intent.putExtra("time", time);
+        intent.putExtra("date", date);
+
+        startActivity(intent);
     }
 }
