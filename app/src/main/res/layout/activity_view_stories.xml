@@ -11,7 +11,7 @@
     android:fitsSystemWindows="true"
     tools:context="com.coincalc.anduril.rakon.ViewStories">
 
-    <android.support.v4.view.ViewPager
+    <com.coincalc.anduril.rakon.NonSwipeableViewPager
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:id="@+id/pager"

@@ -62,6 +62,12 @@ public class SignInActivity extends AppCompatActivity {
         }
     }
 
+    public void getResetPrompt(View view)
+    {
+        Intent intent = ForgotPassword.makeIntent(SignInActivity.this);
+        startActivity(intent);
+    }
+
     public static Intent makeIntent(Context context)
     {
         return new Intent(context, SignInActivity.class);

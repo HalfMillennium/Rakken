@@ -59,7 +59,7 @@ public class SignUpActivity extends AppCompatActivity {
         if(!(eNosp.equals("") || uNosp.equals("") || pNosp.equals(""))) {
 
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-            ref.child("users").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
+            ref.child("users").child(email.replace(".", "")).child(username).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     Log.d("username", username);
@@ -115,8 +115,6 @@ public class SignUpActivity extends AppCompatActivity {
         if(authSuccess) {
             // Sign in success, update UI with the signed-in user's information
             Log.d(TAG, "createUserWithEmail:success");
-
-            Log.d("WHAT", username);
 
             ref.child("users").child(email.replace(".", "")).setValue(username);
             ref.push();

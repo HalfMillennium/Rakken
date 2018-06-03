@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,15 +19,24 @@
         </activity>
         <activity
             android:name=".ViewStories"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_view_stories" />
-        <activity android:name=".StoryEntries" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".NewEntry" />
-        <activity android:name=".SignInActivity" />
-        <activity android:name=".CreateNew" />
-        <activity android:name=".DetailsPopup"
-            android:theme="@style/AppTheme.CustomPopup">
-        </activity>
+        <activity android:name=".StoryEntries"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SignUpActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".NewEntry"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SignInActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".CreateNew"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".DetailsPopup"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.CustomPopup"></activity>
+        <activity android:name=".ForgotPassword"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

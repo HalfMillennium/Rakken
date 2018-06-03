@@ -36,6 +36,7 @@
         <item>SERIOUS</item>
         <item>FUN</item>
     </string-array>
+    <string name="forgot_pass"><u>Forgot Your Password?</u></string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
