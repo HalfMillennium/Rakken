@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center_vertical"
     android:orientation="vertical">
 
     <TextView
@@ -25,13 +27,60 @@
         android:textStyle="italic"
         android:fontFamily="sans-serif-black"/>
 
-    <TextView
-        android:id="@+id/dateUser"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/zonapro_light"
-        android:gravity="end"
-        android:paddingRight="10dp"
-        android:text="@string/place_holder_stamp"
-        android:textColor="@color/titleColor" />
+        android:orientation="horizontal"
+        android:layout_gravity="right">
+
+        <ImageView
+            android:id="@+id/eye_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_if_eye_preview_see_seen_view_392505" />
+
+        <TextView
+            android:id="@+id/view_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:fontFamily="@font/zonapro_bold"
+            android:gravity="center_vertical"
+            android:paddingRight="10dp"
+            android:text="0"
+            android:textColor="#090909" />
+
+        <ImageView
+            android:id="@+id/heart_icon"
+            android:layout_width="28dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_1200px_heart_corazon" />
+
+        <TextView
+            android:id="@+id/like_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:fontFamily="@font/zonapro_bold"
+            android:gravity="center_vertical"
+            android:paddingRight="10dp"
+            android:text="0"
+            android:textColor="#090909" />
+
+        <TextView
+            android:id="@+id/dateUser"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/zonapro_light"
+            android:gravity="end|center_vertical"
+            android:paddingRight="10dp"
+            android:text="@string/place_holder_stamp"
+            android:textColor="@color/titleColor" />
+
+    </LinearLayout>
+
 </LinearLayout>

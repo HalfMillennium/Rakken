@@ -9,7 +9,7 @@
     android:fitsSystemWindows="true"
     android:weightSum="10"
     android:orientation="vertical"
-    tools:context="com.coincalc.anduril.rakon.ViewStories">
+    tools:context="com.coincalc.anduril.rakken.ViewStories">
 
     <TextView
         android:layout_width="match_parent"

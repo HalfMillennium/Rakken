@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.coincalc.anduril.rakon.NewEntry">
+    tools:context="com.coincalc.anduril.rakon.com.coincalc.anduril.rakken.NewEntry">
 
     <EditText
         android:id="@+id/content"

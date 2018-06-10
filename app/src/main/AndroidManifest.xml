@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity android:name="com.coincalc.anduril.rakken.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,24 +18,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ViewStories"
+            android:name="com.coincalc.anduril.rakken.ViewStories"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_view_stories" />
-        <activity android:name=".StoryEntries"
+        <activity android:name="com.coincalc.anduril.rakken.StoryEntries"
             android:screenOrientation="portrait"/>
-        <activity android:name=".SignUpActivity"
+        <activity android:name="com.coincalc.anduril.rakken.SignUpActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".NewEntry"
+        <activity android:name="com.coincalc.anduril.rakken.NewEntry"
             android:screenOrientation="portrait"/>
-        <activity android:name=".SignInActivity"
+        <activity android:name="com.coincalc.anduril.rakken.SignInActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".CreateNew"
+        <activity android:name="com.coincalc.anduril.rakken.CreateNew"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".DetailsPopup"
+            android:name="com.coincalc.anduril.rakken.DetailsPopup"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.CustomPopup"></activity>
-        <activity android:name=".ForgotPassword"
+        <activity android:name="com.coincalc.anduril.rakken.ForgotPassword"
             android:screenOrientation="portrait"></activity>
     </application>
 
